@@ -1,0 +1,17 @@
+{
+  "short_name": "CV Gabriel Díaz",
+  "name": "CV y portafolio de Gabriel Díaz",
+  "description": "CV y portafolio profesional: agentes IA y automatizaciones",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E1117",
+  "theme_color": "#0E1117",
+  "icons": [
+    {
+      "src": "/multimedia/foto-gabriel-1x.webp",
+      "sizes": "480x700",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}

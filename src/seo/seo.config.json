@@ -1,0 +1,58 @@
+{
+  "siteName": "Gabriel Díaz — CV",
+  "siteUrl": "https://cv.donprueba.online",
+  "locale": "es_CO",
+  "defaultTitle": "Gabriel Díaz · Agentes IA y Automatizaciones",
+  "defaultDescription": "CV y portafolio de Gabriel David Díaz Garavito: Tecnólogo en Desarrollo de Software, desarrollador de agentes de IA y automatizaciones con LLMs.",
+  "defaultImagePath": "/multimedia/foto-gabriel.webp",
+  "routes": [
+    {
+      "path": "/cv",
+      "label": "CV",
+      "title": "CV de Gabriel Díaz · Agentes IA y Automatizaciones | Don Prueba",
+      "description": "CV y portafolio de Gabriel David Díaz Garavito: Tecnólogo en Desarrollo de Software, desarrollador de agentes de IA y automatizaciones con LLMs en Don Prueba (Bogotá, Colombia).",
+      "schemaType": "ProfilePage",
+      "type": "profile",
+      "priority": 0.9,
+      "changefreq": "monthly",
+      "imagePath": "/multimedia/foto-gabriel.webp",
+      "indexable": true
+    },
+    {
+      "path": "/",
+      "label": "Inicio",
+      "title": "Gabriel Díaz · Agentes IA y Automatizaciones",
+      "description": "CV y portafolio de Gabriel David Díaz Garavito.",
+      "schemaType": "ProfilePage",
+      "type": "profile",
+      "priority": 1.0,
+      "changefreq": "monthly",
+      "imagePath": "/multimedia/foto-gabriel.webp",
+      "indexable": true
+    },
+    {
+      "path": "/sobre-mi",
+      "label": "Sobre mí",
+      "title": "Gabriel Díaz · Agentes IA y Automatizaciones",
+      "description": "CV y portafolio de Gabriel David Díaz Garavito.",
+      "schemaType": "ProfilePage",
+      "type": "profile",
+      "priority": 0.5,
+      "changefreq": "monthly",
+      "imagePath": "/multimedia/foto-gabriel.webp",
+      "indexable": true
+    },
+    {
+      "path": "/gabriel",
+      "label": "Gabriel",
+      "title": "Gabriel Díaz · Agentes IA y Automatizaciones",
+      "description": "CV y portafolio de Gabriel David Díaz Garavito.",
+      "schemaType": "ProfilePage",
+      "type": "profile",
+      "priority": 0.5,
+      "changefreq": "monthly",
+      "imagePath": "/multimedia/foto-gabriel.webp",
+      "indexable": true
+    }
+  ]
+}

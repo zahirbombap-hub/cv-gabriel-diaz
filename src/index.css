@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global app styles and imports */
+@import "./styles/theme.css";
+
+/* When <html> is in light mode (cream) — apply to body for pages that don't
+   explicitly set their own background. */
+html:not(.dark) body {
+  background-color: #F4F1EA;
+  color: #1F2937;
+}
