@@ -27,7 +27,9 @@ export function CvHero() {
           <div className="relative mx-auto md:mx-0">
             <div className="relative">
               <OptimizedImage
-                src={`${profile.photoBase}.jpg`}
+                src={profile.photoFallback}
+                srcSet={`${profile.photoBase} 1x, ${profile.photoBase2x} 2x`}
+                webpSrcSet={`${profile.photoBase} 1x, ${profile.photoBase2x} 2x`}
                 alt={`Foto de ${profile.fullName}`}
                 width={240}
                 height={350}

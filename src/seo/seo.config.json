@@ -4,7 +4,7 @@
   "locale": "es_CO",
   "defaultTitle": "Gabriel Díaz · Agentes IA y Automatizaciones",
   "defaultDescription": "CV y portafolio de Gabriel David Díaz Garavito: Tecnólogo en Desarrollo de Software, desarrollador de agentes de IA y automatizaciones con LLMs.",
-  "defaultImagePath": "/multimedia/foto-gabriel.webp",
+  "defaultImagePath": "/multimedia/foto-gabriel-1x.webp",
   "routes": [
     {
       "path": "/cv",
@@ -15,7 +15,7 @@
       "type": "profile",
       "priority": 0.9,
       "changefreq": "monthly",
-      "imagePath": "/multimedia/foto-gabriel.webp",
+      "imagePath": "/multimedia/foto-gabriel-1x.webp",
       "indexable": true
     },
     {
@@ -27,7 +27,7 @@
       "type": "profile",
       "priority": 1.0,
       "changefreq": "monthly",
-      "imagePath": "/multimedia/foto-gabriel.webp",
+      "imagePath": "/multimedia/foto-gabriel-1x.webp",
       "indexable": true
     },
     {
@@ -39,7 +39,7 @@
       "type": "profile",
       "priority": 0.5,
       "changefreq": "monthly",
-      "imagePath": "/multimedia/foto-gabriel.webp",
+      "imagePath": "/multimedia/foto-gabriel-1x.webp",
       "indexable": true
     },
     {
@@ -51,7 +51,7 @@
       "type": "profile",
       "priority": 0.5,
       "changefreq": "monthly",
-      "imagePath": "/multimedia/foto-gabriel.webp",
+      "imagePath": "/multimedia/foto-gabriel-1x.webp",
       "indexable": true
     }
   ]

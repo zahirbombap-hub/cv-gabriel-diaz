@@ -16,7 +16,9 @@ export const cvData = {
     github: "https://github.com/zahirbombap-hub",
     linkedin:
       "https://www.linkedin.com/in/gabriel-david-diaz-garavito-3a013b2a0/",
-    photoBase: "/multimedia/foto-gabriel",
+    photoBase: "/multimedia/foto-gabriel-1x.webp",
+    photoBase2x: "/multimedia/foto-gabriel-2x.webp",
+    photoFallback: "/multimedia/foto-gabriel.jpg",
   },
 
   about: [
