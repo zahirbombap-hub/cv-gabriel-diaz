@@ -1,6 +1,10 @@
-import { useState } from "react";
-import { cvData } from "./cvData.js";
-import { useReveal } from "../../hooks/useReveal.js";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { cvData } from './cvData.js';
+import { BlurFade } from '../ui/blur-fade.jsx';
+import { ShimmerButton } from '../ui/shimmer-button.jsx';
+
+const spring = { type: 'spring', stiffness: 300, damping: 20 };
 
 const ICONS = {
   mail: (
@@ -27,130 +31,155 @@ const ICONS = {
 };
 
 export function CvContact() {
-  const [ref, visible] = useReveal();
-  const revealClass = visible ? "is-visible" : "";
   const { contact, profile } = cvData;
-
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const subject = encodeURIComponent("Contacto desde CV web — " + form.name);
+    const subject = encodeURIComponent('Contacto desde CV web — ' + form.name);
     const body = encodeURIComponent(
-      "Nombre: " + form.name + "\n" +
-      "Email: " + form.email + "\n\n" +
+      'Nombre: ' + form.name + '\n' +
+      'Email: ' + form.email + '\n\n' +
       form.message
     );
     window.location.href =
-      "mailto:" + profile.email + "?subject=" + subject + "&body=" + body;
+      'mailto:' + profile.email + '?subject=' + subject + '&body=' + body;
   };
 
   return (
-    <section ref={ref} className={"cv-reveal " + revealClass + " py-12 md:py-20"}>
+    <BlurFade inView inViewMargin="-80px" className="py-12 md:py-20">
       <div className="mx-auto max-w-cv px-4 md:px-8">
-        <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-accent">
-          06 · Contacto
-        </p>
-        <h2 className="mb-3 font-display text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
-          Hablemos
-        </h2>
-        <p className="mb-10 max-w-2xl text-base text-text-secondary md:text-lg">
-          ¿Tienes un proceso que quieres automatizar o una idea con IA?
-          Escríbeme por cualquier canal.
-        </p>
+        <BlurFade inView delay={0.05}>
+          <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-accent">
+            06 · Contacto
+          </p>
+        </BlurFade>
+        <BlurFade inView delay={0.1}>
+          <h2 className="mb-3 font-display text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+            Hablemos
+          </h2>
+        </BlurFade>
+        <BlurFade inView delay={0.15}>
+          <p className="mb-10 max-w-2xl text-base text-text-secondary md:text-lg">
+            ¿Tienes un proceso que quieres automatizar o una idea con IA?
+            Escríbeme por cualquier canal.
+          </p>
+        </BlurFade>
 
         <div className="mb-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {contact.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="cv-card cv-focusable flex items-center gap-3 p-4 hover:border-accent"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-elevated text-accent">
-                {ICONS[c.icon] || ICONS.mail}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-mono uppercase tracking-wider text-text-muted">
-                  {c.label}
-                </p>
-                <p className="mt-0.5 truncate text-sm font-semibold text-text-primary">
-                  {c.value}
-                </p>
-              </div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 shrink-0 text-text-muted">
-                <path d="M7 17L17 7M17 7H8M17 7v9" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+          {contact.map((c, idx) => (
+            <BlurFade key={c.label} inView delay={0.2 + idx * 0.08}>
+              <motion.a
+                href={c.href}
+                target={c.href.startsWith('http') ? '_blank' : undefined}
+                rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                whileHover={{ y: -4, scale: 1.02, borderColor: 'var(--accent-primary)' }}
+                className="cv-card cv-focusable flex items-center gap-3 p-4 transition-colors duration-200"
+              >
+                <motion.div
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-elevated text-accent"
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  transition={spring}
+                >
+                  {ICONS[c.icon] || ICONS.mail}
+                </motion.div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] font-mono uppercase tracking-wider text-text-muted">
+                    {c.label}
+                  </p>
+                  <p className="mt-0.5 truncate text-sm font-semibold text-text-primary">
+                    {c.value}
+                  </p>
+                </div>
+                <motion.svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="h-4 w-4 shrink-0 text-text-muted"
+                  whileHover={{ x: 3 }}
+                  transition={spring}
+                >
+                  <path d="M7 17L17 7M17 7H8M17 7v9" strokeLinecap="round" strokeLinejoin="round" />
+                </motion.svg>
+              </motion.a>
+            </BlurFade>
           ))}
         </div>
 
-        <div className="cv-card p-6 md:p-8">
-          <h3 className="mb-2 font-display text-xl font-bold text-text-primary">
-            Mensaje rápido
-          </h3>
-          <p className="mb-6 text-sm text-text-secondary">
-            Completa el formulario y se abrirá tu cliente de correo con el mensaje listo para enviar.
-          </p>
+        <BlurFade inView delay={0.3}>
+          <div className="cv-card p-6 md:p-8">
+            <h3 className="mb-2 font-display text-xl font-bold text-text-primary">
+              Mensaje rápido
+            </h3>
+            <p className="mb-6 text-sm text-text-secondary">
+              Completa el formulario y se abrirá tu cliente de correo con el mensaje listo para enviar.
+            </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <label className="block">
+                  <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
+                    Tu nombre
+                  </span>
+                  <motion.input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    whileFocus={{ scale: 1.01, boxShadow: '0 0 0 3px rgba(var(--accent-primary-rgb), 0.25)' }}
+                    transition={{ duration: 0.2 }}
+                    className="cv-focusable w-full rounded-lg border border-border-subtle bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted transition-colors duration-200"
+                    placeholder="Ej. María López"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
+                    Tu email
+                  </span>
+                  <motion.input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    whileFocus={{ scale: 1.01, boxShadow: '0 0 0 3px rgba(var(--accent-primary-rgb), 0.25)' }}
+                    transition={{ duration: 0.2 }}
+                    className="cv-focusable w-full rounded-lg border border-border-subtle bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted transition-colors duration-200"
+                    placeholder="maria@empresa.com"
+                  />
+                </label>
+              </div>
               <label className="block">
                 <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
-                  Tu nombre
+                  Mensaje
                 </span>
-                <input
-                  type="text"
+                <motion.textarea
                   required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="cv-focusable w-full rounded-lg border border-border-subtle bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted"
-                  placeholder="Ej. María López"
+                  rows={5}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  whileFocus={{ scale: 1.005, boxShadow: '0 0 0 3px rgba(var(--accent-primary-rgb), 0.25)' }}
+                  transition={{ duration: 0.2 }}
+                  className="cv-focusable w-full rounded-lg border border-border-subtle bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted transition-colors duration-200"
+                  placeholder="Cuéntame qué quieres automatizar o construir..."
                 />
               </label>
-              <label className="block">
-                <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
-                  Tu email
-                </span>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="cv-focusable w-full rounded-lg border border-border-subtle bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted"
-                  placeholder="maria@empresa.com"
-                />
-              </label>
-            </div>
-            <label className="block">
-              <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
-                Mensaje
-              </span>
-              <textarea
-                required
-                rows={5}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="cv-focusable w-full rounded-lg border border-border-subtle bg-elevated px-3 py-2 text-sm text-text-primary placeholder:text-text-muted"
-                placeholder="Cuéntame qué quieres automatizar o construir..."
-              />
-            </label>
-            <button
-              type="submit"
-              className="cv-focusable inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover"
-              style={{
-                background: "linear-gradient(135deg, var(--accent-primary), var(--accent-glow))",
-              }}
-            >
-              Enviar por email
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </form>
-        </div>
+              <ShimmerButton
+                type="submit"
+                shimmerColor="rgba(255,255,255,0.5)"
+                background="linear-gradient(135deg, var(--accent-primary), var(--accent-glow))"
+                borderRadius="12px"
+                className="px-6 py-3 text-sm font-semibold"
+              >
+                Enviar por email
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2 h-4 w-4">
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </ShimmerButton>
+            </form>
+          </div>
+        </BlurFade>
       </div>
-    </section>
+    </BlurFade>
   );
 }

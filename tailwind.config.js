@@ -7,7 +7,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // CV theme tokens — consume CSS variables defined in src/styles/theme.css
         base: 'var(--bg-base)',
         surface: 'var(--bg-surface)',
         elevated: 'var(--bg-elevated)',
@@ -35,9 +34,23 @@ module.exports = {
         'card-hover': 'var(--shadow-card-hover)',
       },
       keyframes: {
-        'cv-reveal': {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        'shimmer-slide': {
+          to: { transform: 'translate(100%, 0)' },
+        },
+        'spin-around': {
+          to: { transform: 'rotate(360deg)' },
+        },
+        'shiny-text': {
+          '0%': { 'background-position': '0 0' },
+          '100%': { 'background-position': '200% 0' },
+        },
+        rippling: {
+          '0%': { transform: 'scale(0)', opacity: 1 },
+          '100%': { transform: 'scale(2)', opacity: 0 },
+        },
+        ripple: {
+          '0%, 100%': { transform: 'translate(-50%, -50%) scale(1)' },
+          '50%': { transform: 'translate(-50%, -50%) scale(1.1)' },
         },
         'cv-float': {
           '0%, 100%': { transform: 'translateY(0)' },
@@ -45,7 +58,11 @@ module.exports = {
         },
       },
       animation: {
-        'cv-reveal': 'cv-reveal 600ms ease-out both',
+        'shimmer-slide': 'shimmer-slide var(--speed) ease-in-out infinite alternate',
+        'spin-around': 'spin-around var(--speed) linear infinite',
+        'shiny-text': 'shiny-text 8s infinite',
+        rippling: 'rippling var(--duration) ease-out',
+        ripple: 'ripple 3s ease-in-out infinite',
         'cv-float': 'cv-float 6s ease-in-out infinite',
       },
     },

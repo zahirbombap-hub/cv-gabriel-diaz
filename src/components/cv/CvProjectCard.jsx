@@ -1,21 +1,34 @@
+import { motion } from 'framer-motion';
+import { MagicCard } from '../ui/magic-card.jsx';
+
 export function CvProjectCard({ project, featured = false, compact = false }) {
   const badgeClass =
-    project.badgeKind === "glow" ? "cv-tag-glow" :
-    project.badgeKind === "warm" ? "cv-tag-warm" :
-    "cv-tag";
+    project.badgeKind === 'glow' ? 'cv-tag-glow' :
+    project.badgeKind === 'warm' ? 'cv-tag-warm' :
+    'cv-tag';
 
   const hasCtas = project.repo || project.demo;
-  const cardClass =
-    "cv-card group flex h-full flex-col " +
-    (featured ? "p-6 md:p-7" : "p-4 md:p-5");
 
   return (
-    <article className={cardClass}>
+    <MagicCard
+      className="flex h-full flex-col rounded-xl p-6 md:p-7"
+      gradientColor="rgba(var(--accent-primary-rgb), 0.06)"
+      gradientFrom="var(--accent-primary)"
+      gradientTo="var(--accent-glow)"
+      gradientSize={250}
+      gradientOpacity={0.1}
+    >
       {featured && (
         <div className="mb-3 flex items-center justify-between gap-2">
-          <span className={badgeClass + " text-[10px] uppercase tracking-wider"}>
+          <motion.span
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 400, damping: 12 }}
+            className={badgeClass + ' text-[10px] uppercase tracking-wider'}
+          >
             {project.badge}
-          </span>
+          </motion.span>
           {project.context && (
             <span className="text-[10px] font-mono uppercase tracking-wider text-text-muted">
               {project.context}
@@ -26,8 +39,8 @@ export function CvProjectCard({ project, featured = false, compact = false }) {
 
       <h3
         className={
-          "mb-2 font-display font-bold text-text-primary " +
-          (featured ? "text-xl md:text-2xl" : "text-base")
+          'mb-2 font-display font-bold text-text-primary ' +
+          (featured ? 'text-xl md:text-2xl' : 'text-base')
         }
       >
         {project.title}
@@ -39,7 +52,7 @@ export function CvProjectCard({ project, featured = false, compact = false }) {
         </p>
       )}
 
-      <div className={"flex flex-wrap gap-1.5 " + (featured ? "mb-4" : "")}>
+      <div className={'flex flex-wrap gap-1.5 ' + (featured ? 'mb-4' : '')}>
         {project.tags.map((t) => (
           <span key={t} className="cv-tag font-mono text-[10px]">
             {t}
@@ -52,36 +65,44 @@ export function CvProjectCard({ project, featured = false, compact = false }) {
       {hasCtas && (
         <div className="flex gap-4 pt-2">
           {project.demo && (
-            <a
+            <motion.a
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ x: 3 }}
               className="cv-focusable inline-flex items-center gap-1 text-xs font-semibold text-accent hover:underline"
             >
               Ver
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3">
                 <path d="M7 17L17 7M17 7H8M17 7v9" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </motion.a>
           )}
           {project.repo && (
-            <a
+            <motion.a
               href={project.repo}
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ x: 3 }}
               className="cv-focusable inline-flex items-center gap-1 text-xs font-semibold text-accent hover:underline"
             >
               Código
-            </a>
+            </motion.a>
           )}
         </div>
       )}
 
       {!featured && (
-        <span className={badgeClass + " mt-3 self-start text-[10px] uppercase tracking-wider"}>
+        <motion.span
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className={badgeClass + ' mt-3 self-start text-[10px] uppercase tracking-wider'}
+        >
           {project.badge}
-        </span>
+        </motion.span>
       )}
-    </article>
+    </MagicCard>
   );
 }
