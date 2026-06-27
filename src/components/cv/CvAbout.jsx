@@ -47,7 +47,7 @@ export function CvAbout() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
           <div>
             <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-accent">
-              01 · Sobre mí
+                Sobre mí
             </p>
             <h2 className="mb-6 font-display text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
               Construyo sistemas que sustituyen tareas repetitivas
@@ -66,20 +66,20 @@ export function CvAbout() {
               <BlurFade key={s.label} inView delay={0.2 + newStats.indexOf(s) * 0.08}>
                 <motion.div
                   whileHover={{ y: -4, scale: 1.02, transition: spring }}
-                  className="cv-card flex items-start gap-3 p-4"
+                  className="cv-card flex h-full items-center gap-3 p-4"
                 >
                   <motion.div
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-elevated text-accent"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-elevated text-accent"
                     whileHover={{ rotate: 10, scale: 1.1 }}
                     transition={spring}
                   >
                     {ICONS[s.icon]}
                   </motion.div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-mono uppercase tracking-wider text-text-muted">
+                    <p className="text-xs font-mono font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                       {s.label}
                     </p>
-                    <p className="mt-1 text-sm font-semibold text-text-primary">
+                    <p className="mt-1 text-base font-bold text-gray-900 dark:text-gray-100">
                       {s.num != null ? (
                         <>
                           {s.prefix || ''}

@@ -1,76 +1,60 @@
-/*
- * Theme tokens — Gabriel Díaz CV
- *
- * Light mode is the default (crema/papel suave).
- * Dark mode activates via the `dark` class on <html> (toggle from useThemeMode hook).
- * Tailwind classes `bg-base`, `text-primary`, `border-subtle`, etc. read these vars.
- */
-
 :root {
-  /* surfaces */
-  --bg-base: #F4F1EA;
-  --bg-surface: #FBFAF6;
-  --bg-elevated: #FFFFFF;
+  --bg-base: #e6d8b5;
+  --bg-surface: #ddd0ac;
+  --bg-elevated: #f0e6ca;
 
-  /* borders */
-  --border-subtle: #DCD6C5;
-  --border-strong: #B5AC93;
+  --border-subtle: #d0d7de;
+  --border-strong: #8b949e;
 
-  /* text */
-  --text-primary: #1F2937;
-  --text-secondary: #293544;
-  --text-muted: #3D4858;
+  --text-primary: #1f2328;
+  --text-secondary: #323743;
+  --text-muted: #656d76;
 
-  /* accents */
-  --accent-primary: #4338CA;
-  --accent-primary-rgb: 67, 56, 202;
-  --accent-glow: #5B21B6;
-  --accent-glow-rgb: 91, 33, 182;
-  --accent-warm: #B91C1C;
-  --accent-warm-rgb: 185, 28, 28;
-  --success: #15803D;
+  --accent-primary: #0969da;
+  --accent-primary-rgb: 9, 105, 218;
+  --accent-glow: #0550ae;
+  --accent-glow-rgb: 5, 80, 174;
+  --accent-warm: #cf222e;
+  --accent-warm-rgb: 207, 34, 46;
+  --success: #1a7f37;
 
-  /* code */
-  --code-bg: #ECE7DA;
+  --code-bg: #f0ede4;
 
-  /* misc */
-  --shadow-card: 0 1px 2px rgba(15, 17, 21, 0.06), 0 4px 12px rgba(15, 17, 21, 0.04);
-  --shadow-card-hover: 0 4px 8px rgba(15, 17, 21, 0.08), 0 12px 28px rgba(15, 17, 21, 0.08);
-  --ring-focus: 0 0 0 3px rgba(79, 70, 229, 0.4);
+  --shadow-card: 0 1px 3px rgba(20, 18, 12, 0.10), 0 8px 24px rgba(20, 18, 12, 0.06);
+  --shadow-card-hover: 0 4px 12px rgba(20, 18, 12, 0.12), 0 12px 30px rgba(20, 18, 12, 0.08);
+  --ring-focus: 0 0 0 3px rgba(9, 105, 218, 0.3);
 
   color-scheme: light;
 }
 
 .dark {
-  --bg-base: #0E1117;
-  --bg-surface: #1C2128;
-  --bg-elevated: #22272E;
+  --bg-base: #0d1117;
+  --bg-surface: #161b22;
+  --bg-elevated: #1c2128;
 
-  --border-subtle: #30363D;
-  --border-strong: #484F58;
+  --border-subtle: #30363d;
+  --border-strong: #484f58;
 
-  --text-primary: #E6EDF3;
-  --text-secondary: #D8DEE5;
-  --text-muted: #B6BFCB;
+  --text-primary: #e6edf3;
+  --text-secondary: #c9d1d9;
+  --text-muted: #8b949e;
 
-  --accent-primary: #7C9CFF;
-  --accent-primary-rgb: 124, 156, 255;
-  --accent-glow: #B392FF;
-  --accent-glow-rgb: 179, 146, 255;
-  --accent-warm: #FF9D7A;
-  --accent-warm-rgb: 255, 157, 122;
-  --success: #56D364;
+  --accent-primary: #58a6ff;
+  --accent-primary-rgb: 88, 166, 255;
+  --accent-glow: #79c0ff;
+  --accent-glow-rgb: 121, 192, 255;
+  --accent-warm: #f85149;
+  --accent-warm-rgb: 248, 81, 73;
+  --success: #3fb950;
 
-  --code-bg: #0B0F15;
+  --code-bg: #161b22;
 
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
-  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.4), 0 20px 40px rgba(0, 0, 0, 0.35);
-  --ring-focus: 0 0 0 3px rgba(124, 156, 255, 0.45);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.4), 0 12px 30px rgba(0, 0, 0, 0.35);
+  --ring-focus: 0 0 0 3px rgba(88, 166, 255, 0.45);
 
   color-scheme: dark;
 }
-
-/* CV-specific helpers consumed by components */
 
 .cv-card {
   background-color: var(--bg-surface);
@@ -88,10 +72,10 @@
 .cv-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.2rem 0.65rem;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 500;
   background-color: rgba(var(--accent-primary-rgb), 0.12);
   color: var(--accent-primary);
@@ -117,6 +101,21 @@
   border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
 }
 
+.cv-badge-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: rgba(var(--accent-glow-rgb), 0.12);
+  color: var(--accent-glow);
+  border: 1px solid rgba(var(--accent-glow-rgb), 0.32);
+}
+
 .cv-divider {
   height: 1px;
   background: linear-gradient(
@@ -131,20 +130,13 @@
   .cv-card {
     transition: none;
   }
-  .cv-reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
 }
 
-/* Focus ring global for CV interactive elements */
 .cv-focusable:focus-visible {
   outline: none;
   box-shadow: var(--ring-focus);
 }
 
-/* CV page background — radial wash so it never feels flat */
 .cv-page-bg {
   background-color: var(--bg-base);
   background-image: radial-gradient(

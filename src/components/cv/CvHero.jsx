@@ -38,7 +38,7 @@ export function CvHero() {
       />
 
       <div className="mx-auto max-w-cv px-4 md:px-8">
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[200px_1fr] md:gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[140px_1fr] md:gap-12 lg:grid-cols-[168px_1fr] lg:gap-16">
           <BlurFade className="relative mx-auto md:mx-0" direction="up" offset={10} delay={0.1}>
             <motion.div className="relative" whileHover={{ scale: 1.02 }} transition={spring}>
               <OptimizedImage
@@ -46,9 +46,9 @@ export function CvHero() {
                 srcSet={`${profile.photoBase} 1x, ${profile.photoBase2x} 2x`}
                 webpSrcSet={`${profile.photoBase} 1x, ${profile.photoBase2x} 2x`}
                 alt={`Foto de ${profile.fullName}`}
-                width={240}
-                height={350}
-                sizes="(min-width: 1024px) 240px, (min-width: 768px) 200px, 120px"
+                width={168}
+                height={245}
+                sizes="(min-width: 1024px) 168px, (min-width: 768px) 140px, 168px"
                 priority="high"
                 lazy={false}
                 className="relative z-10 rounded-2xl border border-border-subtle shadow-card-hover"
@@ -75,10 +75,20 @@ export function CvHero() {
                 className="mb-3 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-success-cv"
               >
                 <motion.span
-                  className="h-2 w-2 rounded-full bg-success-cv"
-                  animate={{ opacity: [1, 0.3, 1] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                />
+                  className="relative inline-flex"
+                >
+                  <motion.span
+                    className="h-3 w-3 rounded-full bg-success-cv"
+                    animate={{
+                      opacity: [1, 0.4, 1],
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    style={{
+                      boxShadow: '0 0 6px var(--success), 0 0 12px color-mix(in srgb, var(--success) 50%, transparent)',
+                    }}
+                  />
+                </motion.span>
                 Disponible para contrato
               </motion.p>
             </BlurFade>
@@ -112,9 +122,9 @@ export function CvHero() {
               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row md:items-start">
                 <ShimmerButton
                   onClick={scrollToProjects}
-                  shimmerColor="rgba(255,255,255,0.6)"
+                  shimmerColor="rgba(255,255,255,0.7)"
                   background="linear-gradient(135deg, var(--accent-primary), var(--accent-glow))"
-                  borderRadius="12px"
+                  borderRadius="18px"
                   className="px-6 py-3 text-sm font-semibold"
                 >
                   Ver proyectos

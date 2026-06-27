@@ -11,7 +11,7 @@ export function CvExperience() {
       <div className="mx-auto max-w-cv px-4 md:px-8">
         <BlurFade inView delay={0.05}>
           <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-accent">
-            02 · Experiencia
+            Experiencia
           </p>
         </BlurFade>
         <BlurFade inView delay={0.1}>
@@ -59,7 +59,7 @@ export function CvExperience() {
                     <h3 className="font-display text-xl font-bold text-text-primary md:text-2xl">
                       {job.role}
                     </h3>
-                    <p className="mt-1 text-base font-semibold text-accent">
+                    <p className="mt-1 text-base font-semibold text-gray-700 dark:text-gray-300">
                       {job.company}
                     </p>
                   </div>
@@ -77,7 +77,7 @@ export function CvExperience() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
-                      className="flex gap-3 text-sm leading-relaxed text-text-secondary md:text-base"
+                      className="flex gap-3 text-sm leading-relaxed text-gray-950 dark:text-gray-100 font-medium"
                     >
                       <span
                         aria-hidden="true"

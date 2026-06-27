@@ -51,7 +51,7 @@ export function CvContact() {
       <div className="mx-auto max-w-cv px-4 md:px-8">
         <BlurFade inView delay={0.05}>
           <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-accent">
-            06 · Contacto
+            Contacto
           </p>
         </BlurFade>
         <BlurFade inView delay={0.1}>
@@ -84,7 +84,7 @@ export function CvContact() {
                   {ICONS[c.icon] || ICONS.mail}
                 </motion.div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[10px] font-mono uppercase tracking-wider text-text-muted">
+                  <p className="text-[10px] font-mono uppercase tracking-wider text-text-secondary">
                     {c.label}
                   </p>
                   <p className="mt-0.5 truncate text-sm font-semibold text-text-primary">
@@ -119,7 +119,7 @@ export function CvContact() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <label className="block">
-                  <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
+                  <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-secondary">
                     Tu nombre
                   </span>
                   <motion.input
@@ -134,7 +134,7 @@ export function CvContact() {
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
+                  <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-secondary">
                     Tu email
                   </span>
                   <motion.input
@@ -150,7 +150,7 @@ export function CvContact() {
                 </label>
               </div>
               <label className="block">
-                <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-muted">
+                <span className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-text-secondary">
                   Mensaje
                 </span>
                 <motion.textarea
@@ -166,9 +166,9 @@ export function CvContact() {
               </label>
               <ShimmerButton
                 type="submit"
-                shimmerColor="rgba(255,255,255,0.5)"
+                shimmerColor="rgba(255,255,255,0.7)"
                 background="linear-gradient(135deg, var(--accent-primary), var(--accent-glow))"
-                borderRadius="12px"
+                borderRadius="18px"
                 className="px-6 py-3 text-sm font-semibold"
               >
                 Enviar por email

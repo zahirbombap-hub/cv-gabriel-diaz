@@ -1,5 +1,6 @@
 import { RouteSeo } from "../components/Seo.jsx";
 import { cvData } from "../components/cv/cvData.js";
+import { CvHeader } from "../components/cv/CvHeader.jsx";
 import { CvHero } from "../components/cv/CvHero.jsx";
 import { CvAbout } from "../components/cv/CvAbout.jsx";
 import { CvExperience } from "../components/cv/CvExperience.jsx";
@@ -7,7 +8,6 @@ import { CvSkills } from "../components/cv/CvSkills.jsx";
 import { CvProjects } from "../components/cv/CvProjects.jsx";
 import { CvEducation } from "../components/cv/CvEducation.jsx";
 import { CvContact } from "../components/cv/CvContact.jsx";
-import { CvThemeToggle } from "../components/cv/CvThemeToggle.jsx";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -48,18 +48,20 @@ export default function Cv() {
     <div className="cv-page-bg relative min-h-screen">
       <RouteSeo routePath="/cv" structuredData={[personSchema]} />
 
-      <div className="fixed right-4 top-4 z-40 md:right-6 md:top-6">
-        <CvThemeToggle />
-      </div>
+      <CvHeader />
 
-      <main>
+      <main className="pt-16">
         <CvHero />
         <CvAbout />
-        <CvExperience />
+        <section id="cv-experiencia">
+          <CvExperience />
+        </section>
         <CvSkills />
         <CvProjects />
         <CvEducation />
-        <CvContact />
+        <section id="cv-contacto">
+          <CvContact />
+        </section>
       </main>
 
       <footer className="border-t border-border-subtle py-8">

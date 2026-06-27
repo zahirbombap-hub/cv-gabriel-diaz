@@ -3,7 +3,7 @@ import { MagicCard } from '../ui/magic-card.jsx';
 
 export function CvProjectCard({ project, featured = false, compact = false }) {
   const badgeClass =
-    project.badgeKind === 'glow' ? 'cv-tag-glow' :
+    project.badgeKind === 'glow' ? 'cv-badge-glow' :
     project.badgeKind === 'warm' ? 'cv-tag-warm' :
     'cv-tag';
 
@@ -16,7 +16,7 @@ export function CvProjectCard({ project, featured = false, compact = false }) {
       gradientFrom="var(--accent-primary)"
       gradientTo="var(--accent-glow)"
       gradientSize={250}
-      gradientOpacity={0.1}
+      gradientOpacity={0.06}
     >
       {featured && (
         <div className="mb-3 flex items-center justify-between gap-2">
@@ -25,7 +25,7 @@ export function CvProjectCard({ project, featured = false, compact = false }) {
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 400, damping: 12 }}
-            className={badgeClass + ' text-[10px] uppercase tracking-wider'}
+            className={badgeClass}
           >
             {project.badge}
           </motion.span>
@@ -47,14 +47,14 @@ export function CvProjectCard({ project, featured = false, compact = false }) {
       </h3>
 
       {featured && (
-        <p className="mb-4 text-sm leading-relaxed text-text-secondary md:text-base">
+        <p className="mb-4 text-sm leading-relaxed text-gray-900 dark:text-gray-100">
           {project.description}
         </p>
       )}
 
-      <div className={'flex flex-wrap gap-1.5 ' + (featured ? 'mb-4' : '')}>
+      <div className={'flex flex-wrap gap-2 ' + (featured ? 'mb-4' : '')}>
         {project.tags.map((t) => (
-          <span key={t} className="cv-tag font-mono text-[10px]">
+          <span key={t} className="cv-tag font-mono">
             {t}
           </span>
         ))}
@@ -98,7 +98,7 @@ export function CvProjectCard({ project, featured = false, compact = false }) {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className={badgeClass + ' mt-3 self-start text-[10px] uppercase tracking-wider'}
+          className={badgeClass + ' mt-3 self-start'}
         >
           {project.badge}
         </motion.span>

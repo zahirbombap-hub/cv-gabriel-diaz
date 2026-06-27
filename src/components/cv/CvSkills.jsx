@@ -12,7 +12,7 @@ export function CvSkills() {
       <div className="mx-auto max-w-cv px-4 md:px-8">
         <BlurFade inView delay={0.05}>
           <p className="mb-2 text-xs font-mono uppercase tracking-[0.2em] text-accent">
-            03 · Habilidades
+            Habilidades
           </p>
         </BlurFade>
         <BlurFade inView delay={0.1}>
