@@ -4,6 +4,7 @@ import { CvThemeToggle } from './CvThemeToggle.jsx';
 const navLinks = [
   { label: 'Experiencia', href: '#cv-experiencia' },
   { label: 'Proyectos', href: '#cv-proyectos' },
+  { label: 'GitHub', href: '#cv-github' },
   { label: 'Contacto', href: '#cv-contacto' },
 ];
 

@@ -8,6 +8,7 @@ import { CvSkills } from "../components/cv/CvSkills.jsx";
 import { CvProjects } from "../components/cv/CvProjects.jsx";
 import { CvEducation } from "../components/cv/CvEducation.jsx";
 import { CvContact } from "../components/cv/CvContact.jsx";
+import { CvGitHubActivity } from "../components/cv/CvGitHubActivity.jsx";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -59,6 +60,9 @@ export default function Cv() {
         <CvSkills />
         <CvProjects />
         <CvEducation />
+        <section id="cv-github">
+          <CvGitHubActivity />
+        </section>
         <section id="cv-contacto">
           <CvContact />
         </section>

@@ -151,3 +151,35 @@
     );
   min-height: 100%;
 }
+
+/* GitHub contribution calendar colors */
+:root {
+  --gh-0: #ebedf0;
+  --gh-1: #9be9a8;
+  --gh-2: #40c463;
+  --gh-3: #30a14e;
+  --gh-4: #216e39;
+}
+.dark {
+  --gh-dark-0: #161b22;
+  --gh-dark-1: #0e4429;
+  --gh-dark-2: #006d32;
+  --gh-dark-3: #26a641;
+  --gh-dark-4: #39d353;
+}
+
+.contrib-cell[data-level="0"] { background-color: var(--gh-0); }
+.dark .contrib-cell[data-level="0"] { background-color: var(--gh-dark-0); }
+.contrib-cell[data-level="1"] { background-color: var(--gh-1); }
+.dark .contrib-cell[data-level="1"] { background-color: var(--gh-dark-1); }
+.contrib-cell[data-level="2"] { background-color: var(--gh-2); }
+.dark .contrib-cell[data-level="2"] { background-color: var(--gh-dark-2); }
+.contrib-cell[data-level="3"] { background-color: var(--gh-3); }
+.dark .contrib-cell[data-level="3"] { background-color: var(--gh-dark-3); }
+.contrib-cell[data-level="4"] { background-color: var(--gh-4); }
+.dark .contrib-cell[data-level="4"] { background-color: var(--gh-dark-4); }
+
+.contrib-cell:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
