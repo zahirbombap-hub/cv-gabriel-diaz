@@ -202,6 +202,12 @@ export const cvData = {
     },
   ],
 
+  cvPdf: {
+    es: "/cv-gabriel-diaz-es.pdf",
+    en: "/cv-gabriel-diaz-en.pdf",
+    html: "/cv-gabriel-diaz-es.html",
+  },
+
   contact: [
     {
       label: "Email",

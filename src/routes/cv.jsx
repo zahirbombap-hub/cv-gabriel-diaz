@@ -5,10 +5,12 @@ import { CvHero } from "../components/cv/CvHero.jsx";
 import { CvAbout } from "../components/cv/CvAbout.jsx";
 import { CvExperience } from "../components/cv/CvExperience.jsx";
 import { CvSkills } from "../components/cv/CvSkills.jsx";
+import { CvSkillsRadar } from "../components/cv/CvSkillsRadar.jsx";
 import { CvProjects } from "../components/cv/CvProjects.jsx";
 import { CvEducation } from "../components/cv/CvEducation.jsx";
 import { CvContact } from "../components/cv/CvContact.jsx";
 import { CvGitHubActivity } from "../components/cv/CvGitHubActivity.jsx";
+import { GabrielBot } from "../components/chat/GabrielBot.jsx";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -58,6 +60,7 @@ export default function Cv() {
           <CvExperience />
         </section>
         <CvSkills />
+        <CvSkillsRadar />
         <CvProjects />
         <CvEducation />
         <section id="cv-github">
@@ -83,6 +86,8 @@ export default function Cv() {
           </p>
         </div>
       </footer>
+
+      <GabrielBot />
     </div>
   );
 }

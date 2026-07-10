@@ -4,12 +4,15 @@
   "private": true,
   "description": "CV y portafolio de Gabriel David Díaz Garavito — desarrollador de software especializado en automatización con IA. React 19 + Tailwind + Vercel.",
   "dependencies": {
+    "@ai-sdk/groq": "^4.0.7",
+    "ai": "^7.0.19",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.17.0",
     "react-scripts": "5.0.1",
+    "recharts": "^3.9.2",
     "tailwind-merge": "^3.6.0"
   },
   "scripts": {
@@ -17,7 +20,10 @@
     "prestart": "node scripts/generate-seo-files.mjs",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "cv:html": "node scripts/generate-cv-html.mjs",
+    "cv:pdf": "node scripts/generate-cv-pdf.mjs",
+    "cv:all": "npm run cv:html && npm run cv:pdf"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +46,7 @@
   "devDependencies": {
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.15",
+    "puppeteer": "^25.3.0",
     "tailwindcss": "^3.4.19"
   },
   "overrides": {
