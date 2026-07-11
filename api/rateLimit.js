@@ -19,7 +19,7 @@ function cleanExpired() {
 
 setInterval(cleanExpired, 60 * 1000);
 
-export function checkRateLimit(ip) {
+function checkRateLimit(ip) {
   if (process.env.NODE_ENV === 'development') return null;
 
   const now = Date.now();
@@ -49,3 +49,5 @@ export function checkRateLimit(ip) {
 
   return null;
 }
+
+module.exports = { checkRateLimit };
