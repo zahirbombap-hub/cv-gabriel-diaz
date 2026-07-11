@@ -1,77 +1,72 @@
-import { streamText } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
-import { SYSTEM_PROMPT } from './prompt.js';
-import { sanitizeInput, isInjection, isFlood, validateMessages } from './sanitize.js';
-import { checkRateLimit } from './rateLimit.js';
+const { streamText } = require('ai');
+const { createGroq } = require('@ai-sdk/groq');
+const { Readable } = require('stream');
+const { SYSTEM_PROMPT } = require('./prompt.js');
+const { sanitizeInput, isInjection, isFlood, validateMessages } = require('./sanitize.js');
+const { checkRateLimit } = require('./rateLimit.js');
 
 const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY || '',
 });
 
-function getClientIp(request) {
-  const forwarded = request.headers.get('x-forwarded-for');
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
   if (forwarded) return forwarded.split(',')[0].trim();
-  return request.headers.get('x-real-ip') || 'unknown';
+  return req.headers['x-real-ip'] || 'unknown';
 }
 
-export default async function handler(request) {
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', (chunk) => { body += chunk; });
+    req.on('end', () => {
+      try {
+        resolve(JSON.parse(body));
+      } catch {
+        reject(new Error('JSON inválido'));
+      }
     });
+    req.on('error', reject);
+  });
+}
+
+module.exports = async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   if (!process.env.GROQ_API_KEY) {
-    return new Response(JSON.stringify({ error: 'API key no configurada' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(500).json({ error: 'API key no configurada' });
   }
 
-  const ip = getClientIp(request);
+  const ip = getClientIp(req);
   const rateLimit = checkRateLimit(ip);
   if (rateLimit) {
-    return new Response(JSON.stringify({ error: rateLimit.reason }), {
-      status: 429,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(429).json({ error: rateLimit.reason });
   }
 
   let body;
   try {
-    body = await request.json();
+    body = await readBody(req);
   } catch {
-    return new Response(JSON.stringify({ error: 'JSON inválido' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(400).json({ error: 'JSON inválido' });
   }
 
   const { messages } = body;
 
   if (!validateMessages(messages)) {
-    return new Response(JSON.stringify({ error: 'Mensajes inválidos' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(400).json({ error: 'Mensajes inválidos' });
   }
 
   const lastMessage = messages[messages.length - 1];
   const cleaned = sanitizeInput(lastMessage.content);
 
   if (isInjection(cleaned)) {
-    return new Response(
-      JSON.stringify({ error: 'Mensaje no permitido. Por favor escribe algo apropiado.' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
+    return res.status(400).json({ error: 'Mensaje no permitido.' });
   }
 
   if (isFlood(cleaned)) {
-    return new Response(
-      JSON.stringify({ error: 'Mensaje detectado como repetitivo. Por favor escribe algo más elaborado.' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
+    return res.status(400).json({ error: 'Mensaje detectado como repetitivo.' });
   }
 
   const safeMessages = messages.map((m, i) => {
@@ -90,11 +85,16 @@ export default async function handler(request) {
       maxTokens: 800,
     });
 
-    return result.toTextStreamResponse();
+    const webStream = result.toTextStreamResponse().body;
+    const nodeStream = Readable.fromWeb(webStream);
+
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.status(200);
+
+    nodeStream.pipe(res);
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: 'Error al procesar la solicitud. Intenta de nuevo.' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    console.error('Chat error:', err.message);
+    res.status(500).json({ error: 'Error al procesar la solicitud. Intenta de nuevo.' });
   }
-}
+};
