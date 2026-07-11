@@ -25,6 +25,7 @@
     "cv:pdf": "node scripts/generate-cv-pdf.mjs",
     "cv:all": "npm run cv:html && npm run cv:pdf"
   },
+  "proxy": "https://cv-gabriel-diaz.vercel.app",
   "eslintConfig": {
     "extends": [
       "react-app",
