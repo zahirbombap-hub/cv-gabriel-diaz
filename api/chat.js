@@ -4,10 +4,6 @@ import { SYSTEM_PROMPT } from './prompt.js';
 import { sanitizeInput, isInjection, isFlood, validateMessages } from './sanitize.js';
 import { checkRateLimit } from './rateLimit.js';
 
-export const config = {
-  runtime: 'edge',
-};
-
 const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY || '',
 });
