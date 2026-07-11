@@ -85,14 +85,22 @@ module.exports = async function handler(req, res) {
       maxTokens: 800,
     });
 
-    const webStream = result.toTextStreamResponse().body;
-    const nodeStream = Readable.fromWeb(webStream);
+    const response = result.toTextStreamResponse();
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
 
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     res.setHeader('Cache-Control', 'no-cache');
     res.status(200);
 
-    nodeStream.pipe(res);
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const text = decoder.decode(value, { stream: true });
+      res.write(text);
+    }
+
+    res.end();
   } catch (err) {
     console.error('Chat error:', err.message);
     res.status(500).json({ error: 'Error al procesar la solicitud. Intenta de nuevo.' });
