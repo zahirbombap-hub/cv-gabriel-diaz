@@ -90,10 +90,10 @@ export default async function handler(request) {
       maxTokens: 800,
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (err) {
     return new Response(
-      JSON.stringify({ error: 'Error interno: ' + err.message, stack: err.stack?.split('\n').slice(0, 5).join('\n') }),
+      JSON.stringify({ error: 'Error al procesar la solicitud. Intenta de nuevo.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }

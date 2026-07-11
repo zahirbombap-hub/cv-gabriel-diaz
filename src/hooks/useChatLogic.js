@@ -74,26 +74,13 @@ export function useChatLogic() {
         if (done) break;
 
         const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split('\n');
-
-        for (const line of lines) {
-          if (!line.trim()) continue;
-          if (!line.startsWith('0:')) continue;
-
-          try {
-            const payload = line.slice(2);
-            const text = JSON.parse(payload);
-            if (typeof text === 'string') {
-              assistantContent += text;
-              const content = assistantContent;
-              setMessages((prev) => {
-                const copy = [...prev];
-                copy[copy.length - 1] = { role: 'assistant', content };
-                return copy;
-              });
-            }
-          } catch {}
-        }
+        assistantContent += chunk;
+        const content = assistantContent;
+        setMessages((prev) => {
+          const copy = [...prev];
+          copy[copy.length - 1] = { role: 'assistant', content };
+          return copy;
+        });
       }
 
       setMessages((prev) => {
