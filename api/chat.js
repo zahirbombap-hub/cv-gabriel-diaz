@@ -96,9 +96,8 @@ export default async function handler(request) {
 
     return result.toDataStreamResponse();
   } catch (err) {
-    console.error('Chat error:', err);
     return new Response(
-      JSON.stringify({ error: 'Error al procesar la solicitud. Intenta de nuevo.' }),
+      JSON.stringify({ error: 'Error interno: ' + err.message, stack: err.stack?.split('\n').slice(0, 5).join('\n') }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
